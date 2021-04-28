@@ -3,72 +3,32 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-calender": {
-      "projectType": "library",
-      "root": "projects/angular-calender",
-      "sourceRoot": "projects/angular-calender/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/angular-calender/tsconfig.lib.json",
-            "project": "projects/angular-calender/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/angular-calender/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/angular-calender/src/test.ts",
-            "tsConfig": "projects/angular-calender/tsconfig.spec.json",
-            "karmaConfig": "projects/angular-calender/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/angular-calender/tsconfig.lib.json",
-              "projects/angular-calender/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "my-first-app": {
+    "my-workspace": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/my-first-app",
-      "sourceRoot": "projects/my-first-app/src",
+      "root": "projects/my-workspace",
+      "sourceRoot": "projects/my-workspace/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/my-first-app",
-            "index": "projects/my-first-app/src/index.html",
-            "main": "projects/my-first-app/src/main.ts",
-            "polyfills": "projects/my-first-app/src/polyfills.ts",
-            "tsConfig": "projects/my-first-app/tsconfig.app.json",
+            "outputPath": "dist/my-workspace",
+            "index": "projects/my-workspace/src/index.html",
+            "main": "projects/my-workspace/src/main.ts",
+            "polyfills": "projects/my-workspace/src/polyfills.ts",
+            "tsConfig": "projects/my-workspace/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/my-first-app/src/favicon.ico",
-              "projects/my-first-app/src/assets"
+              "projects/my-workspace/src/favicon.ico",
+              "projects/my-workspace/src/assets"
             ],
             "styles": [
-              "projects/my-first-app/src/styles.scss"
+              "projects/my-workspace/src/styles.scss"
             ],
             "scripts": []
           },
@@ -76,14 +36,13 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/my-first-app/src/environments/environment.ts",
-                  "with": "projects/my-first-app/src/environments/environment.prod.ts"
+                  "replace": "projects/my-workspace/src/environments/environment.ts",
+                  "with": "projects/my-workspace/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -106,33 +65,33 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "my-first-app:build"
+            "browserTarget": "my-workspace:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "my-first-app:build:production"
+              "browserTarget": "my-workspace:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "my-first-app:build"
+            "browserTarget": "my-workspace:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/my-first-app/src/test.ts",
-            "polyfills": "projects/my-first-app/src/polyfills.ts",
-            "tsConfig": "projects/my-first-app/tsconfig.spec.json",
-            "karmaConfig": "projects/my-first-app/karma.conf.js",
+            "main": "projects/my-workspace/src/test.ts",
+            "polyfills": "projects/my-workspace/src/polyfills.ts",
+            "tsConfig": "projects/my-workspace/tsconfig.spec.json",
+            "karmaConfig": "projects/my-workspace/karma.conf.js",
             "assets": [
-              "projects/my-first-app/src/favicon.ico",
-              "projects/my-first-app/src/assets"
+              "projects/my-workspace/src/favicon.ico",
+              "projects/my-workspace/src/assets"
             ],
             "styles": [
-              "projects/my-first-app/src/styles.scss"
+              "projects/my-workspace/src/styles.scss"
             ],
             "scripts": []
           }
@@ -141,9 +100,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/my-first-app/tsconfig.app.json",
-              "projects/my-first-app/tsconfig.spec.json",
-              "projects/my-first-app/e2e/tsconfig.json"
+              "projects/my-workspace/tsconfig.app.json",
+              "projects/my-workspace/tsconfig.spec.json",
+              "projects/my-workspace/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -153,12 +112,12 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/my-first-app/e2e/protractor.conf.js",
-            "devServerTarget": "my-first-app:serve"
+            "protractorConfig": "projects/my-workspace/e2e/protractor.conf.js",
+            "devServerTarget": "my-workspace:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "my-first-app:serve:production"
+              "devServerTarget": "my-workspace:serve:production"
             }
           }
         }
@@ -203,6 +162,7 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-calender"
+    }
+  },
+  "defaultProject": "material-calendar"
 }

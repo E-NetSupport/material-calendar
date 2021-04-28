@@ -1,0 +1,38 @@
+name: Publish Release
+
+on:
+  push:
+    branches:
+      - "main"
+    paths-ignore:
+      - "README.md"
+      - "docu/**"
+      - ".github/ISSUE_TEMPLATE/**"
+      - ".github/PULL_REQUEST_TEMPLATE.md"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: install npm packages
+        run: npm install
+      - name: package Applikation
+        run: npm run build
+      - name: set publish
+        shell: bash
+        env:
+          NPM_PUBLISH: ${{ secrets.NPM_PUBLISH }}
+        run: npm config set $NPM_PUBLISH
+      - name: Set up awesome-ci
+        run: |
+          wget https://github.com/eksrvb/awesome-ci/releases/latest/download/awesome-ci
+          chmod +x awesome-ci
+      - name: Create Release
+        run: ./awesome-ci createRelease -publishNpm dist/emst-ui-frame/
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
